@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
 require("dotenv").config();
 const app = express();
@@ -38,6 +38,14 @@ async function run() {
     // Task get Api
     app.get("/tasks", async (req, res) => {
       const result = await tasksCollection.find().toArray();
+      res.send(result);
+    });
+
+    // Task Delete api
+    app.delete("/task/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await tasksCollection.deleteOne(query);
       res.send(result);
     });
 
