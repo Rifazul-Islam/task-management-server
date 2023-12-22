@@ -41,6 +41,32 @@ async function run() {
       res.send(result);
     });
 
+    // id througth data load
+    app.get("/update/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await tasksCollection.findOne(query);
+      res.send(result);
+    });
+
+    // patch api
+    app.put("/edit/:id", async (req, res) => {
+      const item = req.body;
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          title: item.title,
+          email: item.email,
+          priority: item.priority,
+          des: item.des,
+          date: item.date,
+        },
+      };
+
+      const result = await tasksCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
     // Task Delete api
     app.delete("/task/:id", async (req, res) => {
       const id = req.params.id;
