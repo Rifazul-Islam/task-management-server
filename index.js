@@ -23,21 +23,36 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const userCollection = client.db("taskManagementDB").collection("users");
+    const tasksCollection = client.db("taskManagementDB").collection("tasks");
     const benefitsCollection = client
       .db("taskManagementDB")
       .collection("benefits");
+
+    // tasks related Post api
+    app.post("/tasks", async (req, res) => {
+      const task = req.body;
+      const result = await tasksCollection.insertOne(task);
+      res.send(result);
+    });
+
+    // Task get Api
+    app.get("/tasks", async (req, res) => {
+      const result = await tasksCollection.find().toArray();
+      res.send(result);
+    });
+
+    // user related Post api
+    app.post("/users", async (req, res) => {
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.send(result);
+    });
 
     // user benefit get api
     app.get("/user/:email", async (req, res) => {
       const email = req.params.email;
       const query = { email: email };
       const result = await userCollection.findOne(query);
-      res.send(result);
-    });
-    // user related Post api
-    app.post("/users", async (req, res) => {
-      const user = req.body;
-      const result = await userCollection.insertOne(user);
       res.send(result);
     });
 
