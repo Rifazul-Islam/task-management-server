@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Developer Benefit",
+    "category": "Developers",
+    "img": "https://navigatemc.com/wp-content/uploads/2019/02/dreamstime_s_12025421.jpg",
+    "des": "A developer will get various benefits in this task management platform. A developer can write various tasks for his company.to do list from ongoing list completed drag-and-drop method used."
+  },
+  {
+    "name": "Bankers Benefit",
+    "category": "Bankers",
+    "img": "https://miro.medium.com/v2/resize:fit:1400/1*LN0HgCriU65Gqc2DDsEO6g.jpeg",
+    "des": "A Bankers will get various benefits in this task management platform. A Bankers can write various tasks for his company.to do list from ongoing list completed drag-and-drop method used."
+  },
+  {
+    "name": "Corporate Professionals Benefit",
+    "category": "Corporate",
+    "img": "https://assets.contenthub.wolterskluwer.com/api/public/content/5ddd23054d9740d7a9d28d17b64258a5",
+    "des": "A Corporate Professionals will get various benefits in this task management platform. A Corporate Professionals can write various tasks for his company.to do list from ongoing list completed drag-and-drop method used."
+  }
+]

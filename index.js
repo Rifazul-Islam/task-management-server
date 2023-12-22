@@ -23,13 +23,30 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const userCollection = client.db("taskManagementDB").collection("users");
+    const benefitsCollection = client
+      .db("taskManagementDB")
+      .collection("benefits");
 
+    // user benefit get api
+    app.get("/user/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await userCollection.findOne(query);
+      res.send(result);
+    });
     // user related Post api
     app.post("/users", async (req, res) => {
       const user = req.body;
       const result = await userCollection.insertOne(user);
       res.send(result);
     });
+
+    // User Base Benefits get api
+    app.get("/benefits", async (req, res) => {
+      const result = await benefitsCollection.find().toArray();
+      res.send(result);
+    });
+
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
